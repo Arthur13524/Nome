@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+var nomes = [];
+
+function listarNomes() {
+var listaNomes = document.getElementById("lista-nomes");
+listaNomes.innerHTML = "";
+for (var i = 0; i < nomes.length; i++) {
+var itemLista = document.createElement("li");
+itemLista.textContent = i + " - " + nomes[i];
+listaNomes.appendChild(itemLista);
+}
+}
+
+listarNomes();
+
+function buscarNome() {
+var posicao = document.getElementById("posicao").value;
+if (posicao >= 0 && posicao < nomes.length) {
+alert("O nome na posição " + posicao + " é " + nomes[posicao]);
+} else {
+alert("Não há nada salvo na posição " + posicao + " do vetor.");
+}
+}
+
+function adicionarNome() {
+var nome = document.getElementById("nome").value;
+nomes.push(nome);
+listarNomes();
+}
+
+function removerNome() {
+var nomeRemover = document.getElementById("nome-remover").value;
+var indice = nomes.indexOf(nomeRemover);
+if (indice >= 0) {
+nomes.splice(indice, 1);
+listarNomes();
+} else {
+alert("Não foi possível remover o nome informado.");
+}
+}
+    </script>
+</head>
+<body>
+	<h1>Lista de Nomes</h1>
+<ul id="lista-nomes"></ul>
+
+<label for="posicao">Digite a posição do vetor:</label><br>
+<input type="number" id="posicao" name="posicao">
+<button onclick="buscarNome()">Buscar</button><br>
+
+<label for="nome">Digite o nome a ser adicionado:</label>
+<input type="text" id="nome" name="nome">
+<button onclick="adicionarNome()">Adicionar</button><br>
+
+<label for="nome">Digite o nome a ser removido:</label>
+<input type="text" id="nome-remover" name="nome-remover">
+<button onclick="removerNome()">Remover</button>
+</body>
+</html>
